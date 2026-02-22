@@ -1,42 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Hello world</title>
-    
-    <meta name="theme-color"
-    content="black">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buatan Nuha jangan asal klaim</title>
+    <meta name="theme-color" content="#f5ebe0">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
-      html,body {
-        margin: 0px;
-        font-family: Arial, sans-serif;
-        background-color: black;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      table, th, td {
-        border: 1px solid black;
-        text-align: center;
-        padding: 8px;
-      }
-      video {
-        width: 100%;
-        height: auto;
-        border-radius: 1px;
-        display: block; 
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(135deg, #f5ebe0, #d3ad7f);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: #5e503f; 
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .birthday-text {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+
+        video {
+            width: 90vw;
+            max-width: 500px;
+            height: auto;
+            border-radius: 25px; 
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .emoji-drop {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <video controls>
-        <source src="tiktokio.com1771605091_t6mm8SHPNRwirV1HdgLk.mp4" type="video/mp4">
-    </video>
-    
+    <div class="container">
+        <h1 class="birthday-text">Happy Birthday mipta! 😜</h1>
+        <video id="birthdayVideo" controls loop playsinline>
+            <source src="tiktokio.com1771745250_YMnh6RU0mDGyKy5jj958.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        const emojis = ['🐾', '🐱', '🐟', '🧶', '✨'];
+
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji-drop';
+            emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 2 + 3) + 's'; 
+            
+            document.body.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.remove();
+            }, 5000);
+        }
+
+        setInterval(createEmoji, 300);
+    </script>
 </body>
 </html>
